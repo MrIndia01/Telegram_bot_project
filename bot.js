@@ -126,7 +126,7 @@ bot.callbackQuery("check_join", async (ctx) => {
 
 //Upon receiving any message
 
-bot.on("message:text",
+bot.on("message",
     async (ctx) => {
         try{
             
@@ -160,7 +160,8 @@ bot.on("message:text",
                 ctx.session.walletAddress = walletAddress
                 ctx.session.lastClaim = Date.now();
                 ctx.session.step = false
-            } catch (err) {
+            } 
+            catch (err) {
                 console.log("Some error might Have Occured",err)
                 await ctx.reply("There is Some Error Please try again later")
             }
@@ -172,6 +173,7 @@ bot.on("message:text",
 }
 catch(err){
     console.log("Error Message other than start and is blocked",err)
+    console.log("Blocked by user ",ctx.from.id)
 }
 })
 bot.catch((err) => {
